@@ -11,19 +11,21 @@
 		"gulp-connect": "latest",
 		"gulp-sass": "^4.0.2",
 		"gulp-uglify": "latest",
-		"merge-stream": "^1.0.1"
+		"merge-stream": "^1.0.1",
+		"event-stream": ">=4.0.0"
 	},
 	"dependencies": {
 		"fontawesome-free": "^5.5.0",
 		"gulp-clean-css": "^3.10.0",
 		"gulp-rename": "^1.4.0",
 		"gulp-sourcemaps": "^2.6.4",
-		"jquery": "^3.3.1",
+		"jquery": ">=3.4.0",
 		"jquery-validation": "1.18.0",
 		"jquery-validation-unobtrusive": "3.2.11",
 		"jqueryui": "^1.11.1",
 		"npm": "^6.1.0",
 		"rename": "^1.0.4",
-		"sortablejs": "^1.7.0"
+		"sortablejs": "^1.7.0",
+		"event-stream": ">=4.0.0"
 	}
 }
