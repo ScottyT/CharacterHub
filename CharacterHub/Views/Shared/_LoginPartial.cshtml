@@ -1,0 +1,61 @@
+﻿@using CharacterHub.Models
+@using CharacterHub.Controllers
+@using CharacterHub.ViewModels
+@using Microsoft.AspNet.Identity
+
+@if (Request.IsAuthenticated)
+{
+	NotificationController n = new NotificationController();
+	CharacterContext c = new CharacterContext();
+	var currentUser = User.Identity.GetUserId();
+	var charactersList = c.Characters.ToList();
+	//var userNotifications = n.GetUserNotifications().ToList();
+
+
+	using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right logged-in-wrapper" }))
+	{
+		@Html.AntiForgeryToken()
+
+		<ul class="nav navbar-nav navbar-right">
+
+			<li class="dropdown">
+				<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Hello @User.Identity.Name!
+				</a>
+				<div class="dropdown-menu">
+					<a class="dropdown-item" href="@Url.Action("Index", "Manage")">My Account</a>
+					<a class="dropdown-item"></a>
+				</div>
+			</li>
+			<li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+			<li class="notify-center">
+				<a class="notification-toggle" href="#" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
+					<i class="fas fa-globe-americas"><span class="sr-only"></span></i>
+				</a>
+				<div class="dropdown-menu">
+					@if (charactersList.Any())
+					{
+						foreach (var x in n.GetUserNotifications())
+						{
+							if (x.Notification.Type == NotificationType.CharacterAdded)
+							{
+								<a href="@Url.Action("Detail", "Character", new {id = x.Character.Id})" class="notification" data-id="@x.Notification.Id" data-character-id="@x.Character.Id">@x.Character.User.Name has added @x.Character.CharacterName</a>
+							}
+							if (x.Notification.Type == NotificationType.CharacterUpdated && x.UserId == currentUser)
+							{
+								<a href="/" class="notification">@x.Character.User.Name has updated one of your favorite characters.</a>
+							}
+						}
+					}
+				</div>
+			</li>
+		</ul>
+	}
+}
+else
+{
+	<ul class="nav navbar-nav navbar-right">
+		<li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link" })</li>
+		<li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link" })</li>
+	</ul>
+}

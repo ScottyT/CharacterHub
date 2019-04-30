@@ -1,0 +1,38 @@
+﻿@model CharacterHub.ViewModels.CharacterFormViewModel
+@{
+	
+	ViewBag.Title = "Create";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add a Character</h2>
+@using (Html.BeginForm(Model.Action, "Character", FormMethod.Post, new { enctype = "multipart/form-data"}))
+{
+	@Html.AntiForgeryToken()
+	@Html.HiddenFor(c => c.Id)
+	<p>@ViewBag.ErrorMessage</p>
+	<div class="form-group">
+		@Html.LabelFor(m => m.CharacterName)
+		@Html.TextBoxFor(m => m.CharacterName, new { @class = "form-control" })
+		@Html.ValidationMessageFor(m => m.CharacterName)
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(m => m.FirstAppearance)
+		@Html.TextBoxFor(m => m.FirstAppearance, new { @class = "form-control" })
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(m => m.Likes)
+		@Html.TextBoxFor(m => m.Likes, new { @class = "form-control" })
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(m => m.Dislikes)
+		@Html.TextBoxFor(m => m.Dislikes, new { @class = "form-control" })
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(m => m.Image)
+		<input name="uploadImage" type="file"/>
+	</div>
+	<button type="submit" class="btn btn-primary">Submit</button>
+
+}
+

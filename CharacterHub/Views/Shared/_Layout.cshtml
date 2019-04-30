@@ -1,0 +1,47 @@
+﻿@using System.Web.Mvc;
+@using CharacterHub.Controllers
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>@ViewBag.Title - My ASP.NET Application</title>
+	<link rel="stylesheet" href="~/Content/Styles/site.css" />
+</head>
+<body>
+	<header class="navbar navbar-expand-lg navbar-dark">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				@Html.ActionLink("Character Hub", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav mr-auto main-pages">
+					<li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+					<li>@Html.ActionLink("Add a Character", "Create", "Character", new { area = "" }, new { @class = "nav-link" })</li>
+					<li>
+						@Html.ActionLink("My Characters", "Mine", "Character", new { area = "" }, new { @class = "nav-link" })
+					</li>
+					<li>
+						@Html.ActionLink("Users", "Index", "Users", new { area = "" }, new { @class = "nav-link" })
+					</li>
+				</ul>
+				@Html.Partial("_LoginPartial")
+			</div>
+		</div>
+	</header>
+	<div class="container body-content">
+		@RenderBody()
+		<hr />
+		<footer>
+			<p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+		</footer>
+	</div>
+	<script src="~/Content/Scripts/site.js"></script>
+</body>
+</html>

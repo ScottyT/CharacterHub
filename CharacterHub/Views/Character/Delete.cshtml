@@ -1,0 +1,24 @@
+﻿@using CharacterHub.ViewModels
+@using CharacterHub.Controllers
+@using CharacterHub.Models
+@using Microsoft.AspNet.Identity
+@model CharacterHub.ViewModels.CharacterViewModel
+
+@{
+	/**/
+
+	ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+<p class="error">@ViewBag.ErrorMessage</p>
+<h3>Are you sure you want to delete @Model.Character.CharacterName?</h3>
+@using (Html.BeginForm("Delete", "Character", FormMethod.Post))
+{
+	@Html.AntiForgeryToken()
+	<div>
+		<span class="col-md">
+			<input type="submit" value="Delete" class="btn btn-default" />
+		</span>
+	</div>
+}

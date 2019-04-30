@@ -1,0 +1,15 @@
+﻿@model CharacterHub.ViewModels.CharacterViewModel
+
+@{
+	var imgSrc = "";
+	if (Model.Character.ImageData != null)
+	{
+		var base64 = Convert.ToBase64String(Model.Character.ImageData);
+		imgSrc = String.Format("data:image/gif;base64, {0}", base64);
+	}
+	
+}
+
+<h1>@Model.Character.CharacterName</h1>
+<p>First Appearance - @Model.Character.FirstAppearance</p>
+<img src="@imgSrc" />

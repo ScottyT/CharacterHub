@@ -1,0 +1,28 @@
+﻿@using CharacterHub.Controllers
+@model List<CharacterHub.ViewModels.UserViewModel>
+@{
+	Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewBag.Title = "Users";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+	<table class="user-list table">
+		<thead>
+			<tr>
+				<th scope="col">Username</th>
+				<th scope="col">Email</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var user in Model)
+			{
+				<tr>
+					<td>@user.Username</td>
+					<td>@user.Email</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>

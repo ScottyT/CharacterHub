@@ -1,0 +1,71 @@
+﻿@using CharacterHub.ViewModels
+@using CharacterHub.Controllers
+@using CharacterHub.Models
+@using Microsoft.AspNet.Identity
+@model CharacterViewModel
+@{
+	ViewBag.Title = "Home Page";
+	var message = "";
+	if (ViewBag.Success != null)
+	{
+		message = ViewBag.SuccessText;
+	}
+	var userCharacters = Model.CharacterRatings.Where(c => c.UserId == User.Identity.GetUserId()).ToList();
+}
+
+<div class="container">
+	<div class="row characters">
+		@foreach (var character in Model.Characters)
+		{
+			<div class="character-item" id="@character.Id">
+				<div class="character-wrapper">
+					<div class="name col-md-4" data-id="@character.Id">
+						<a href="@Url.Action("Detail", "Character", new {id = character.Id})"><p class="large">@character.CharacterName</p></a>
+						<p class="small">Avg. Rating:</p>
+						<p class="large average-rating"><span>@character.AverageRating</span> / 5</p>
+					</div>
+
+					
+					@{
+
+						var characterRatings = Model.CharacterRatings
+							.FirstOrDefault(c => c.Name == character.CharacterName && c.UserId == User.Identity.GetUserId());
+						<div class="star-wrapper col-md-6">
+							<div class="d-flex">
+								@{
+									foreach (var rating in Model.Ratings)
+									{
+										<div class="star" data-value="@rating.Id" data-rating="@rating.RatingTitle" data-number="@rating.RateNumber">
+											<i class="fas fa-star"></i>
+										</div>
+									}
+								}
+							</div>
+
+							<p class="small">Your rating:</p>
+							<div class="rating-desc">
+								@if (characterRatings != null)
+								{
+									<p class="large" data-orig-rating="@characterRatings.RatingTitle">@characterRatings.RatingTitle</p>
+								}
+								else
+								{
+									<p class="large">Not Rated</p>
+								}
+							</div>
+						</div>
+						<span class="col-md">
+							<a href="@Url.Action("Edit", "Character", new {id = character.Id})">Update</a>
+							<a href="@Url.Action("Delete", "Character", new { id = character.Id})">Delete</a>
+						</span>
+
+					}
+				</div>
+				
+
+			</div>
+		}
+
+		
+	</div>
+</div>

@@ -1,0 +1,104 @@
+﻿@model CharacterHub.ViewModels.CharacterViewModel
+
+@{
+	ViewBag.Title = "Mine";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+
+	var favCharacters = Model.CharacterRatings.Where(c => c.RatingNumber > 3).ToList();
+	var otherCharacters = Model.CharacterRatings.Where(c => c.RatingNumber <= 3).ToList();
+}
+
+<h2>My Characters</h2>
+
+<p>
+	@Html.ActionLink("Create New", "Create")
+</p>
+<div class="row">
+	<div class="col-md-6 characters">
+		<h3>Favorites</h3>
+		@foreach (var character in favCharacters)
+		{
+			var getCharacter = favCharacters.FirstOrDefault(c => c.Name == character.Name);
+			<div class="character-item" id="@character.Id">
+				<div class="character-wrapper">
+					<div class="name col-md-4" id="@character.Id" data-id="@character.CharacterId">
+						<p>@character.Name</p>
+					</div>
+					<div class="star-wrapper col-md-4">
+						<div class="d-flex">
+							@{
+								var i = 1;
+								foreach (var rating in Model.Ratings)
+								{
+									<div class="star" data-value="@i" data-rating="@rating.RatingTitle" data-number="@rating.RateNumber">
+										<i class="fas fa-star"></i>
+									</div>
+
+									i++;
+								}
+							}
+						</div>
+						<div class="rating-desc">
+							@if (getCharacter != null)
+							{
+								<p class="small" data-orig-rating="@getCharacter.RatingTitle">@getCharacter.RatingTitle</p>
+							}
+						</div>
+					</div>
+					<div class="rating-number col-md-2">
+						<span>@getCharacter.RatingNumber</span>
+					</div>
+					<span class="col-md">
+						<a href="@Url.Action("Edit", "Character", new {id = character.Id})">Update</a>
+					</span>
+				</div>
+				
+			</div>
+		}
+	</div>
+
+	<div class="col-md-6 characters">
+		<h3>Others</h3>
+		@foreach (var character in otherCharacters)
+		{
+			var getCharacter = otherCharacters.FirstOrDefault(c => c.Name == character.Name);
+			<div class="character-item">
+				<div class="character-wrapper">
+					<div class="name col-md-4" id="@character.Id" data-id="@character.CharacterId">
+						<p>@character.Name</p>
+					</div>
+					<div class="star-wrapper col-md-4">
+						<div class="d-flex">
+							@{
+								var i = 1;
+								foreach (var rating in Model.Ratings)
+								{
+									<div class="star" data-value="@i" data-rating="@rating.RatingTitle">
+										<i class="fas fa-star"></i>
+									</div>
+
+									i++;
+								}
+							}
+						</div>
+						<div class="rating-desc">
+							@if (getCharacter != null)
+							{
+								<p class="small" data-orig-rating="@getCharacter.RatingTitle">@getCharacter.RatingTitle</p>
+							}
+							
+						</div>
+					</div>
+					<div class="rating-number col-md-2">
+						<span>@getCharacter.RatingNumber</span>
+					</div>
+					<span class="col-md">
+						<a href="@Url.Action("Edit", "Character", new {id = character.Id})">Update</a>
+					</span>
+				</div>
+				
+			</div>
+		}
+	</div>
+</div>
+
