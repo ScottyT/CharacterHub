@@ -334,7 +334,6 @@
     <Content Include="node_modules\fontawesome-free\webfonts\fa-brands-400.svg" />
     <Content Include="node_modules\fontawesome-free\webfonts\fa-regular-400.svg" />
     <Content Include="node_modules\fontawesome-free\webfonts\fa-solid-900.svg" />
-    <Content Include="package-lock.json" />
     <Content Include="Content\Styles\site.scss" />
     <Content Include="Content\Styles\Layout\content.scss" />
     <Content Include="package.json" />

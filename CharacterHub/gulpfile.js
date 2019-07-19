@@ -3,9 +3,9 @@ var gulp = require("gulp"),
     sass = require("gulp-sass"),
     uglify = require("gulp-uglify"),
     merge = require("merge-stream"),
-	rename = require("gulp-rename"),
+    rename = require("gulp-rename"),
     concat = require("gulp-concat"),
-	fontawesome = require("fontawesome-free");
+    fontawesome = require("@fortawesome/fontawesome-free");
 
 var stylesDir = "Content/Styles/",
 	vendorDir = "Content/Vendor/",
@@ -53,8 +53,8 @@ gulp.task('fonts', function () {
 });
 
 gulp.task("watch", function () {
-	gulp.watch([scriptsDir + "*.js", "!" + scriptsDir + "site.js", "!" + scriptsDir + "site.min.js"], ["js"]);
-	gulp.watch(stylesDir + "**/*.scss", ["scss"]);
+	gulp.watch([scriptsDir + "*.js", "!" + scriptsDir + "site.js", "!" + scriptsDir + "site.min.js"], gulp.series("js"));
+	gulp.watch(stylesDir + "**/*.scss", gulp.series("scss"));
 });
 
-gulp.task('default', ['scss', 'js']);
+gulp.task('default', gulp.series['scss', 'js', 'fonts']);
