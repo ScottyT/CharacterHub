@@ -30,7 +30,7 @@ gulp.task("scss", function () {
 
 var jsFiles = [
 	vendorDir + "jquery/jquery.js",
-	vendorDir + "jqueryui/jquery-ui.min.js",
+	vendorDir + "jqueryui/jquery-ui.min.js", 
 	vendorDir + "jquery/jquery.validate.min.js",
 	vendorDir + "jquery/jquery.validate.unobtrusive.min.js",
 	vendorDir + "bootstrap/js/bootstrap.js",
