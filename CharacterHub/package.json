@@ -22,7 +22,7 @@
 		"jquery-validation": "1.18.0",
 		"jquery-validation-unobtrusive": "3.2.11",
 		"jqueryui": "^1.11.1",
-		"npm": "6.10.1",
+		"npm": "6.13.4",
 		"rename": "^1.0.4",
 		"sortablejs": "^1.7.0",
 		"event-stream": ">=4.0.0"
