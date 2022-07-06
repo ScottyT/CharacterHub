@@ -19,7 +19,7 @@
 		"gulp-rename": "^1.4.0",
 		"gulp-sourcemaps": "^2.6.4",
 		"jquery": ">=3.4.0",
-		"jquery-validation": "1.18.0",
+		"jquery-validation": "1.19.5",
 		"jquery-validation-unobtrusive": "3.2.11",
 		"jqueryui": "^1.11.1",
 		"npm": "6.10.1",
